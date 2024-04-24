@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 18
+names: ['airport', 'baseball-diamond', 'basketball-court', 'bridge', 'container-crane', 'ground-track-field', 'harbor', 'helicopter', 'helipad', 'large-vehicle', 'plane', 'roundabout', 'ship', 'small-vehicle', 'soccer-ball-field', 'storage-tank', 'swimming-pool', 'tennis-court']
+
+roboflow:
+  workspace: igor-na
+  project: dota-v2.0
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/igor-na/dota-v2.0/dataset/1
