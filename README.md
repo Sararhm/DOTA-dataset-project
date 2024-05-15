@@ -41,9 +41,9 @@ This README guides you through setting up and training a YOLO model using the Ul
 To train your model, you can use the following command line or Python script:
 
 - **Command Line**:
-
+(dataset source:'https://universe.roboflow.com/class-dvpyb/dota-nbzyn')
   ```bash
-  yolo train model=yolov8n.pt data='https://universe.roboflow.com/ds/2J6hyQjXqb?key=fbHkLT1VBo' epochs=1 imgsz=320
+  yolo train model=yolov8n.pt data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8' epochs=1 imgsz=320
   ```
 
   You can increase the number of epochs as needed for better accuracy.
