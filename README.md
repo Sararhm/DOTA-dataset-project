@@ -20,4 +20,9 @@ Predict the test images
 ```bash
 yolo obb predict model=/content/runs/detect/train/weights/best.pt conf=0.25 source=/content/datasets/DOTAv1/images/test
 ```
+
 If you want to specify what object should be predicted use classes=[int]
+Identify only the planes in the pictures:
+```bash
+!yolo obb predict model=/content/runs/obb/train/weights/best.pt conf=0.25 source=/content/datasets/DOTAv1/images/test save=True classes=0
+```
