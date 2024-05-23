@@ -1,4 +1,4 @@
-## README for YOLO Model Setup and Training
+## YOLO Training on datasets from Roboflow
 
 ### Overview
 
@@ -19,12 +19,15 @@ This README guides you through setting up and training a YOLO model using the Ul
    pip install ultralytics
    ```
 
-2. **Export Dataset from Roboflow**:
+2. *you can choose to either download the dataset from Roboflow on your invironment (you can make changes) or link the desired workspace into your trainings(you can't make changes)*
+   **Export Dataset from Roboflow**:
    To download a dataset from Roboflow Universe, follow these steps:
    - Navigate to the dataset's Roboflow Universe page.
    - Click on the "Download this Dataset" button.
    - Choose the YOLO format, select the version and framework.
-   - Use the generated code snippet to download the dataset to your local environment. Example code:
+   - Use the generated code snippet to download the dataset to your local environment (or click 'show download code' and copy the RAW URL)
+
+Example code:
 
    ```python
    from roboflow import Roboflow
@@ -34,6 +37,9 @@ This README guides you through setting up and training a YOLO model using the Ul
    dataset = project.version(1).download('yolov8')
    ```
 
+   ```bash
+   curl -L "https://app.roboflow.com/project/workspace" &gt; roboflow.zip; unzip roboflow.zip; rm roboflow.zip
+   ```
    For more detailed instructions, follow this guide: [How to Train YOLOv8 on a Custom Dataset](https://blog.roboflow.com/how-to-train-yolov8-on-a-custom-dataset/)
 
 ### Training the Model
@@ -42,26 +48,39 @@ To train your model, you can use the following command line or Python script:
 
 - **Command Line**:
 (dataset source: https://universe.roboflow.com/class-dvpyb/dota-nbzyn)
-  ```bash
-  yolo train model=yolov8n.pt data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8' epochs=1 imgsz=320
+ 
+if you downloaded the dataset use this command:
+ ```bash
+  yolo train model=yolov8n.pt data={dataset.location}/data.yaml epochs=10 imgsz=320
+ ```
+
+  if not, use this command with the direct link(RAW URL):
+ ```bash
+  yolo train model=yolov8n.pt data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8' epochs=10 imgsz=320
   ```
 
-  You can increase the number of epochs as needed for better accuracy.
+  You can increase the number of epochs as needed for better accuracy. This dataset is too big to be trained on image size of 640 and I ran out of RAM every time I tried to run it.
 
 - **Python Code**:
 
   ```python
   from ultralytics import YOLO
 
-  # Load a model
+  # Load a model(either .yaml or .pt)
   model = YOLO('yolov8n.yaml')  # build a new model from scratch
   model = YOLO('yolov8n.pt')  # load a pretrained model (recommended for training)
 
+  # train the model
   # Use the model
-  results = model.train(data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8', epochs=1)  # train the model
-  results = model.val()  # evaluate model performance on the validation set
-  # results = model('https://ultralytics.com/images/bus.jpg')  # predict on an image
-  results = model.export(format='onnx')  # export the model to ONNX format
+  results = model.train(data={dataset.location}/data.yaml, epochs=1)
+  #or the RAW URL link
+  results = model.train(data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8', epochs=1)
+
+  # evaluate model performance on the validation set
+  results = model.val()
+  
+  # export the model to ONNX format
+  results = model.export(format='onnx')  
   ```
 
 ### Downloading the Trained Model
