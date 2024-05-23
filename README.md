@@ -16,7 +16,8 @@ Validate with a new model
 yolo obb mode=val model=/content/runs/obb//train/weights/best.pt data=DOTAv1.yaml
 ```
 
-Predict with a custom model
+Predict the test images
 ```bash
 yolo obb predict model=/content/runs/detect/train/weights/best.pt conf=0.25 source=/content/datasets/DOTAv1/images/test
 ```
+If you want to specify what object should be predicted use classes=[int]
