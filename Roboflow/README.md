@@ -8,7 +8,7 @@ This README guides you through setting up and training a YOLO model using the Ul
 
 - Python 3.x
 - Pip package manager
-- Basic familiarity with Python and Jupyter Notebooks(or Goggle Colab)
+- Basic familiarity with Python and Jupyter Notebooks(or Google Colab)
 
 ### Installation
 
@@ -19,7 +19,7 @@ This README guides you through setting up and training a YOLO model using the Ul
    pip install ultralytics
    ```
 
-2. *you can choose to either download the dataset from Roboflow on your invironment (you can make changes) or link the desired workspace into your trainings(you can't make changes)*
+2. *You can choose to either download the dataset from Roboflow on your environment (you can make changes) or link the desired workspace into your trainings (you can't make changes)*
    **Export Dataset from Roboflow**:
    To download a dataset from Roboflow Universe, follow these steps:
    - Navigate to the dataset's Roboflow Universe page.
@@ -49,12 +49,12 @@ To train your model, you can use the following command line or Python script:
 - **Command Line**:
 (dataset source: https://universe.roboflow.com/class-dvpyb/dota-nbzyn)
  
-if you downloaded the dataset use this command:
+If you downloaded the dataset use this command:
  ```bash
   yolo train model=yolov8n.pt data={dataset.location}/data.yaml epochs=10 imgsz=320
  ```
 
-  if not, use this command with the direct link(RAW URL):
+  If not, use this command with the direct link(RAW URL):
  ```bash
   yolo train model=yolov8n.pt data='https://universe.roboflow.com/ds/OT0z0fQptc?key=2vy8xrz2I8' epochs=10 imgsz=320
   ```
